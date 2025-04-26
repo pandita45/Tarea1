@@ -1,6 +1,5 @@
 package org.example;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 abstract class Bebida{
     private int serie;
@@ -33,48 +32,36 @@ class CocaCola extends Bebida {
     }
 }
 
-class Deposito{
-    private ArrayList<Bebida> ar;
-    public Deposito() {
-        ar = new ArrayList<Bebida>();
-    }
-
-    public void addBebida(Bebida a) {
-        ar.add(a);
-    }
-
-    public Bebida getBebida() {
-        if (ar.size() != 0) {
-            return ar.remove(0);
-        } else {
-            return null;
-        }
-    }
-    public int getStock(){
-        return ar.size();
-    }
-}
-class DepositoM {
-    private ArrayList<Moneda>am;
-    public DepositoM() {
-        am = new ArrayList<Moneda>();
-    }
-    public void addMoneda(Moneda m){
-        am.add(m);
+abstract class Snacks{
+    private int serie;
+    public Snacks(int b){
+        this.serie=b;
     }
     public int getSerie(){
-        return am.size();
+        return serie;
     }
-    public Moneda getMoneda(){
-        if(am.size()!=0){
-            return am.remove(0);
-        }
-        else{
-            return null;
-        }
+    public abstract String Comer();
+}
+class Super8 extends Snacks{
+    public Super8(int serie){
+        super(serie);
+    }
+
+    @Override
+    public String Comer() {
+        return "Super8";
     }
 }
+class Snickers extends Snacks{
+    public Snickers(int serie){
+        super(serie);
+    }
 
+    @Override
+    public String Comer() {
+        return "Snickers";
+    }
+}
 
 abstract class Moneda{
     public Moneda(){
@@ -100,94 +87,136 @@ class Moneda500 extends Moneda{
         return 500;
     }
 }
-class Moneda100 extends Moneda{
-    public Moneda100(){
+class Moneda100 extends Moneda {
+    public Moneda100() {
         super();
     }
+
     public int getValor() {
         return 100;
     }
 }
-class Expendedor {
-    public static final int  COCA=1;
-    public static final int  SPRITE=2;
-    private Deposito CocaCola;
-    private Deposito Sprite;
-    private DepositoM monVu;
-    private final int precio;
-    public Expendedor(int a,int b) {
-        this.precio=b;
-        this.monVu=new DepositoM();
-        this.CocaCola=new Deposito();
-        this.Sprite=new Deposito();
-        for (int i = 0; i < a; i++) {
-            CocaCola.addBebida(new CocaCola(100+i));
-            Sprite.addBebida(new Sprite(200+i));
+
+    abstract class DepositoBase<item> {
+        protected ArrayList<item> Deposito;
+
+        public DepositoBase() {
+            Deposito = new ArrayList<>();
         }
-    }
-    public Bebida comprarBebida(Moneda moneda, int y) {
-        if(moneda!=null){
-            switch (y){
-                case COCA:{
-                    int a=CocaCola.getStock();
-                    if(moneda.getValor()>=precio && a!=0){
-                        for(int i=0; i< (moneda.getValor()-precio)/100;i++){
-                            monVu.addMoneda(new Moneda100());
-                        }
-                        return CocaCola.getBebida();
-                    }
-                    else{
-                        monVu.addMoneda(moneda);
-                        return null;
-                    }
-                }
-                case SPRITE:
-                    int b=Sprite.getStock();
-                    if(moneda.getValor()>=precio && b!=0){
-                        for(int i=0; i< (moneda.getValor()-precio)/100;i++){
-                            monVu.addMoneda(new Moneda100());
-                        }
-                        return Sprite.getBebida();
-                    }
-                    else{
-                        monVu.addMoneda(moneda);
-                        return null;
-                    }
+
+        public void add(item a) {
+            Deposito.add(a);
+        }
+
+        public item get() {
+            if (Deposito.size() != 0) {
+                return Deposito.remove(0);
+            } else {
+                return null;
             }
         }
-        monVu.addMoneda(moneda);
-        return null;
-    }
-    public Moneda getVuelto(){
-        return monVu.getMoneda();
-    }
-}
-class Comprador{
-    private String sonido;
-    private int vuelto;
 
-    public Comprador(Moneda m,int cualBebida, Expendedor exp){
-        Bebida b= exp.comprarBebida(m,cualBebida);
-        if(b!=null){
-            sonido=b.beber();
-        }
-        else{
-            sonido=null;
-        }
-        Moneda mon;
-        while((mon= exp.getVuelto())!=null){
-            vuelto+= mon.getValor();
+        public int getStock() {
+            return Deposito.size();
         }
     }
 
-    public int cuantoVuelto(){
-        return vuelto;
+    class DepositoBebida extends DepositoBase<Bebida> {
+
     }
-    public String queBebiste(){
-        return sonido;
+
+    class DepositoMoneda extends DepositoBase<Moneda> {
+
     }
-}
+
+    class DepositoSnacks extends DepositoBase<Snacks> {
+
+    }
+
+
+    class Expendedor {
+        public static final int COCA = 1;
+        public static final int SPRITE = 2;
+        private DepositoBebida CocaCola;
+        private DepositoBebida Sprite;
+        private DepositoMoneda monVu;
+        private final int precio;
+
+        public Expendedor(int a, int b) {
+            this.precio = b;
+            this.monVu = new DepositoMoneda();
+            this.CocaCola = new DepositoBebida();
+            this.Sprite = new DepositoBebida();
+            for (int i = 0; i < a; i++) {
+                CocaCola.add(new CocaCola(100 + i));
+                Sprite.add(new Sprite(200 + i));
+            }
+        }
+
+        public Bebida comprarBebida(Moneda moneda, int y) {
+            if (moneda != null) {
+                switch (y) {
+                    case COCA: {
+                        int a = CocaCola.getStock();
+                        if (moneda.getValor() >= precio && a != 0) {
+                            for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
+                                monVu.add(new Moneda100());
+                            }
+                            return CocaCola.get();
+                        } else {
+                            monVu.add(moneda);
+                            return null;
+                        }
+                    }
+                    case SPRITE:
+                        int b = Sprite.getStock();
+                        if (moneda.getValor() >= precio && b != 0) {
+                            for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
+                                monVu.add(new Moneda100());
+                            }
+                            return Sprite.get();
+                        } else {
+                            monVu.add(moneda);
+                            return null;
+                        }
+                }
+            }
+            monVu.add(moneda);
+            return null;
+        }
+
+        public Moneda getVuelto() {
+            return monVu.get();
+        }
+    }
+
+    class Comprador {
+        private String sonido;
+        private int vuelto;
+
+        public Comprador(Moneda m, int cualBebida, Expendedor exp) {
+            Bebida b = exp.comprarBebida(m, cualBebida);
+            if (b != null) {
+                sonido = b.beber();
+            } else {
+                sonido = null;
+            }
+            Moneda mon;
+            while ((mon = exp.getVuelto()) != null) {
+                vuelto += mon.getValor();
+            }
+        }
+
+        public int cuantoVuelto() {
+            return vuelto;
+        }
+
+        public String queBebiste() {
+            return sonido;
+        }
+    }
 public class Main {
     public static void main(String[] args) {
     }
 }
+
