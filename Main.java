@@ -73,7 +73,7 @@ public class Main {
             cocaCola = new Comprador(mon100, ProductoYPrecios.COCACOLA, exp3);
             //aqui si el pago se acepta sigue este codigo(se usara mas en el Main Interactivo)
             System.out.println("Vuelto: " + cocaCola.cuantoVuelto());
-            System.out.println("Que Compraste: " + cocaCola.queBebiste());
+            System.out.println("Que Compraste: " + cocaCola.queCompraste());
         } catch (PagoInsuficienteException b){
             System.out.println("Pago insuficiente");
             System.out.println("Moneda rechazada: " + mon100.getValor());
@@ -82,21 +82,21 @@ public class Main {
 
         Comprador sprite = new Comprador(mon1000, ProductoYPrecios.SPRITE,expendedor);
         System.out.println("Vuelto: "+ sprite.cuantoVuelto());
-        System.out.println("Que Compraste: " + sprite.queBebiste());
+        System.out.println("Que Compraste: " + sprite.queCompraste());
 
         System.out.println("compra de fanta, Valor = " + ProductoYPrecios.FANTA.getPrecio() + " moneda de 1000");
         Comprador fanta = new Comprador(mon1000, ProductoYPrecios.FANTA,expendedor);
         System.out.println("Vuelto: "+ fanta.cuantoVuelto());
-        System.out.println("Que Compraste: " + fanta.queBebiste());
+        System.out.println("Que Compraste: " + fanta.queCompraste());
 
         System.out.println("compra de snicker, Valor = " + ProductoYPrecios.SNICKER.getPrecio() + " moneda de 1000");
         Comprador snicker = new Comprador(mon1000, ProductoYPrecios.SNICKER,expendedor);
         System.out.println("Vuelto: "+ snicker.cuantoVuelto());
-        System.out.println("Que Compraste: " + snicker.queBebiste());
+        System.out.println("Que Compraste: " + snicker.queCompraste());
 
         System.out.println("compra de super8, Valor = " + ProductoYPrecios.SUPER8.getPrecio() + " moneda de 1000");
         Comprador super8 = new Comprador(mon1000, ProductoYPrecios.SUPER8,expendedor);
         System.out.println("Vuelto: "+ super8.cuantoVuelto());
-        System.out.println("Que Compraste: " + super8.queBebiste());
+        System.out.println("Que Compraste: " + super8.queCompraste());
     }
 }

@@ -23,7 +23,7 @@ class Comprador {
         return vuelto;
     }
 
-    public String queBebiste() {
+    public String queCompraste() {
         return sonido;
     }
 }

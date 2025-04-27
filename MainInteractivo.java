@@ -79,19 +79,24 @@ public class MainInteractivo {
             saldo = 0;
             try {
                 Comprador c = new Comprador(m,id,exp);
+                System.out.println("Vuelto: " + c.cuantoVuelto());
+                System.out.println("Usted Compro: " + c.queCompraste());
             } catch (NoHayProductoException a){
                 System.out.println("No hay stock");
+                System.out.println("Tome su moneda: $" + m.getValor());
             } catch (PagoIncorrectoException a){
                 System.out.println("No se ingreso moneda");
             } catch (PagoInsuficienteException a){
                 System.out.println("No alcanza para comprar el produto");
+                System.out.println("Tome su moneda: $" + m.getValor());
             }
+            System.out.println("");
             System.out.println("Termino de comprar?:");
             System.out.println("1. Si");
             System.out.println("2. No");
             int seguir = scan.nextInt();
             if(seguir == 1){
-                System.out.println("¡Gracias por su compra, que tenga buen dia!");
+                System.out.println("¡La comunidad de DoomMachine agradece su compra, que tenga un buen dia!");
                 break;
             }
         }
