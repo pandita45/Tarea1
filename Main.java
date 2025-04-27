@@ -68,6 +68,7 @@ public class Main {
         //Pago insuficiente
         Comprador cocaCola;
         System.out.println("compra de cocacola valor = " + ProductoYPrecios.COCACOLA.getPrecio() + " moneda de 100");
+
         try {
             cocaCola = new Comprador(mon100, ProductoYPrecios.COCACOLA, exp3);
             //aqui si el pago se acepta sigue este codigo(se usara mas en el Main Interactivo)
