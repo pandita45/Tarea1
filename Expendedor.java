@@ -1,21 +1,14 @@
 package org.example;
 
 class Expendedor {
-    public static final int COCA = 1;
-    public static final int SPRITE = 2;
-    public static final int FANTA= 3;
-    public static final int SUPER8 = 4;
-    public static final int SNICKERS= 5;
     private DepositoBebida CocaCola;
     private DepositoBebida Sprite;
     private DepositoBebida Fanta;
     private DepositoDulce Super8;
     private DepositoDulce Snickers;
     private DepositoMoneda monVu;
-    private final int precio;
 
-    public Expendedor(int a, int b) {
-        this.precio = b;
+    public Expendedor(int a) {
         this.monVu = new DepositoMoneda();
         this.CocaCola = new DepositoBebida();
         this.Sprite = new DepositoBebida();
@@ -31,10 +24,11 @@ class Expendedor {
         }
     }
 
-    public Producto comprarProducto(Moneda moneda, int y) {
+    public Producto comprarProducto(Moneda moneda, ProductoYPrecios y) {
         if (moneda != null) {
             switch (y) {
-                case COCA: {
+                case COCACOLA: {
+                    int precio = ProductoYPrecios.COCACOLA.getPrecio();
                     int a = CocaCola.getStock();
                     if (moneda.getValor() >= precio && a != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
@@ -47,6 +41,7 @@ class Expendedor {
                     }
                 }
                 case SPRITE: {
+                    int precio = ProductoYPrecios.SPRITE.getPrecio();
                     int b = Sprite.getStock();
                     if (moneda.getValor() >= precio && b != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
@@ -59,6 +54,7 @@ class Expendedor {
                     }
                 }
                 case FANTA: {
+                    int precio = ProductoYPrecios.FANTA.getPrecio();
                     int b = Fanta.getStock();
                     if (moneda.getValor() >= precio && b != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
@@ -71,6 +67,7 @@ class Expendedor {
                     }
                 }
                 case SUPER8: {
+                    int precio = ProductoYPrecios.SUPER8.getPrecio();
                     int b = Super8.getStock();
                     if (moneda.getValor() >= precio && b != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
@@ -82,7 +79,8 @@ class Expendedor {
                         return null;
                     }
                 }
-                case SNICKERS: {
+                case SNICKER: {
+                    int precio = ProductoYPrecios.SNICKER.getPrecio();
                     int b = Snickers.getStock();
                     if (moneda.getValor() >= precio && b != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
