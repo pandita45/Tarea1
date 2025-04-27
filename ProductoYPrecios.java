@@ -7,25 +7,36 @@ public enum ProductoYPrecios{
     SUPER8(4,300),
     SNICKER(5,1000);
 
-    // aqui se define cual es la id de cada producto para poder comprarlo ademas del precio y el nombre del producto
     private final int id;
     private int precio;
-    /*aqui no se coloca el final para poder modificar el precio desde el main con el
-    setPrecio :)*/
+
+    /**
+     * El constructor asigna los valores de precio e id a las variables
+     * @param id valor numerico correspondiente a la opcion de compra
+     * @param precio  precio del producto en cuestion
+     */
     private ProductoYPrecios(int id, int precio){
         this.id = id;
         this.precio = precio;
     }
 
+    /** Funcion que permite cambiar el precio de cierto producto
+     * @param precio valor numerico correspondiente al precio
+     */
     public void setPrecio(int precio){
         this.precio = precio;
     }
-    //precio modificable
 
+    /**
+     * @return Devuelve el id de cierto producto
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @return Devuelve el precio de cierto producto en forma de valor numerico
+     */
     public int getPrecio() {
         return this.precio;
     }
