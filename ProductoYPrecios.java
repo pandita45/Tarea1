@@ -4,8 +4,9 @@ public enum ProductoYPrecios{
     COCACOLA(1,600),
     SPRITE(2, 400),
     FANTA(3, 800),
-    SNICKER(4,1000),
-    SUPER8(5,300);
+    SUPER8(4,300),
+    SNICKER(5,1000);
+
     // aqui se define cual es la id de cada producto para poder comprarlo ademas del precio y el nombre del producto
     private final int id;
     private int precio;

@@ -35,14 +35,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return CocaCola.get();
-                    } else if (b==0){
-                        monVu.add(moneda);
-                        monVu.get();
-                        throw new NoHayProductoException();
-                    } else {
+                    } else if (moneda.getValor()<precio){
                         monVu.add(moneda);
                         monVu.get();
                         throw new PagoInsuficienteException();
+                    } else {
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     }
                 }
                 case SPRITE: {
@@ -53,14 +53,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Sprite.get();
-                    } else if (b==0){
-                        monVu.add(moneda);
-                        monVu.get();
-                        throw new NoHayProductoException();
-                    } else {
+                    } else if (moneda.getValor()<precio){
                         monVu.add(moneda);
                         monVu.get();
                         throw new PagoInsuficienteException();
+                    } else {
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     }
                 }
                 case FANTA: {
@@ -71,14 +71,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Fanta.get();
-                    } else if (b==0){
-                        monVu.add(moneda);
-                        monVu.get();
-                        throw new NoHayProductoException();
-                    } else {
+                    } else if (moneda.getValor()<precio){
                         monVu.add(moneda);
                         monVu.get();
                         throw new PagoInsuficienteException();
+                    } else {
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     }
                 }
                 case SUPER8: {
@@ -89,14 +89,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Super8.get();
-                    } else if (b==0){
-                        monVu.add(moneda);
-                        monVu.get();
-                        throw new NoHayProductoException();
-                    } else {
+                    } else if (moneda.getValor()<precio){
                         monVu.add(moneda);
                         monVu.get();
                         throw new PagoInsuficienteException();
+                    } else {
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     }
                 }
                 case SNICKER: {
@@ -107,14 +107,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Snickers.get();
-                    } else if (b==0){
-                        monVu.add(moneda);
-                        monVu.get();
-                        throw new NoHayProductoException();
-                    } else {
+                    } else if (moneda.getValor()<precio){
                         monVu.add(moneda);
                         monVu.get();
                         throw new PagoInsuficienteException();
+                    } else {
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     }
                 }
             }
