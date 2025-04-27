@@ -24,20 +24,25 @@ class Expendedor {
         }
     }
 
-    public Producto comprarProducto(Moneda moneda, ProductoYPrecios y) {
+    public Producto comprarProducto(Moneda moneda, ProductoYPrecios y) throws Errores {
         if (moneda != null) {
             switch (y) {
                 case COCACOLA: {
                     int precio = ProductoYPrecios.COCACOLA.getPrecio();
-                    int a = CocaCola.getStock();
-                    if (moneda.getValor() >= precio && a != 0) {
+                    int b = CocaCola.getStock();
+                    if (moneda.getValor() >= precio && b != 0) {
                         for (int i = 0; i < (moneda.getValor() - precio) / 100; i++) {
                             monVu.add(new Moneda100());
                         }
                         return CocaCola.get();
+                    } else if (b==0){
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     } else {
                         monVu.add(moneda);
-                        return null;
+                        monVu.get();
+                        throw new PagoInsuficienteException();
                     }
                 }
                 case SPRITE: {
@@ -48,9 +53,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Sprite.get();
+                    } else if (b==0){
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     } else {
                         monVu.add(moneda);
-                        return null;
+                        monVu.get();
+                        throw new PagoInsuficienteException();
                     }
                 }
                 case FANTA: {
@@ -61,9 +71,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Fanta.get();
+                    } else if (b==0){
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     } else {
                         monVu.add(moneda);
-                        return null;
+                        monVu.get();
+                        throw new PagoInsuficienteException();
                     }
                 }
                 case SUPER8: {
@@ -74,9 +89,14 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Super8.get();
+                    } else if (b==0){
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     } else {
                         monVu.add(moneda);
-                        return null;
+                        monVu.get();
+                        throw new PagoInsuficienteException();
                     }
                 }
                 case SNICKER: {
@@ -87,15 +107,20 @@ class Expendedor {
                             monVu.add(new Moneda100());
                         }
                         return Snickers.get();
+                    } else if (b==0){
+                        monVu.add(moneda);
+                        monVu.get();
+                        throw new NoHayProductoException();
                     } else {
                         monVu.add(moneda);
-                        return null;
+                        monVu.get();
+                        throw new PagoInsuficienteException();
                     }
                 }
             }
         }
         monVu.add(moneda);
-        return null;
+        throw new PagoIncorrectoException();
     }
 
     public Moneda getVuelto() {
