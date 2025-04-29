@@ -94,9 +94,15 @@ public class MainInteractivo {
             System.out.println("Termino de comprar?:");
             System.out.println("1. Si");
             System.out.println("2. No");
-            int seguir = scan.nextInt();
+            int seguir = 0;
+            while(seguir != 2){
+                seguir = scan.nextInt();
+                if(seguir == 1){
+                    System.out.println("¡La comunidad de DoomMachine agradece su compra, que tenga un buen dia!");
+                    break;
+                }
+            }
             if(seguir == 1){
-                System.out.println("¡La comunidad de DoomMachine agradece su compra, que tenga un buen dia!");
                 break;
             }
         }
